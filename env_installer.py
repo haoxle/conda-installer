@@ -25,7 +25,7 @@ def install_from_yaml(conda, env_dict, output_dir=None):
         output = Path(output_base) / env_name
         mode = "update" if base_helper.isValidPath(output) else "create"
     else:
-        output = Path(conda).parent.parent / env_name
+        output = Path(conda).parent.parent / "envs" / env_name
         mode = "update" if base_helper.isValidPath(output) else "create"
 
     with tempfile.NamedTemporaryFile("w", suffix=".yml", delete=False) as tmp:
