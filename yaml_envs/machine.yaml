@@ -1,0 +1,13 @@
+name: ml-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pytorch
+  - torchvision
+  - torchaudio
+  - scikit-learn
+  - pandas
+  - matplotlib
+output: C:\Users\Hao-L\conda_installer
