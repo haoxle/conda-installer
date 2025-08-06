@@ -16,16 +16,16 @@ args = parser.parse_args()
 def main():
     conda = args.miniconda
     output_dir = args.output
-    base_helper.isValidFile(conda)
+
+    if not base_helper.existsFile(conda):
+        raise FileNotFoundError(f"Conda executable not found: {conda}")
 
     try:
-        if os.path.isdir(f"{os.getcwd()}\\env"):
-            base_helper.installCondaEnv(conda, f"{os.getcwd()}\\env.yml", "update", output_dir)
-        else:
-            base_helper.installCondaEnv(conda, f"{os.getcwd()}\\env.yml", "create", output_dir)
-    except:
-        raise ValueError("Failed to install project env")
-
+        env_path = os.path.join(os.getcwd(), "env")
+        mode = "update" if os.path.isdir(env_path) else "create"
+        base_helper.installCondaEnv(conda, f"{env_path}.yml", mode, output_dir)
+    except Exception as e:
+        raise ValueError(f"Failed to install project env: {e}") from e
 
 if __name__ == "__main__":
     main()
