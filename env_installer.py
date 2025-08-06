@@ -2,7 +2,7 @@ import argparse
 import yaml
 from pathlib import Path
 import tempfile
-
+import sys
 from utils import base_helper
 from utils.yaml_helper import validateCondaYaml
 
@@ -48,20 +48,35 @@ def main():
     if not base_helper.existsFile(conda):
         raise FileNotFoundError(f"Conda executable not found: {conda}")
 
+    failures = 0
+
     if env_file and base_helper.existsFile(env_file):
-        validateCondaYaml(env_file)
-        with open(env_file, "r") as env:
-            env_dict = yaml.safe_load(env)
-        install_from_yaml(conda, env_dict, output_dir)
+        try:
+            validateCondaYaml(env_file)
+            with open(env_file, "r") as env:
+                env_dict = yaml.safe_load(env)
+            install_from_yaml(conda, env_dict, output_dir)
+        except Exception as e:
+            print(f"Failed to install environment from file {env_file}: {e}")
+            failures += 1
 
     elif env_dir and base_helper.existsDir(env_dir):
         for file in Path(env_dir).iterdir():
             if file.is_file() and file.suffix in [".yaml", ".yml"]:
-                validateCondaYaml(file)
-                with open(file, "r") as f:
-                    env_dict = yaml.safe_load(f)
-                install_from_yaml(conda, env_dict, output_dir)
+                try:
+                    validateCondaYaml(file)
+                    with open(file, "r") as f:
+                        env_dict = yaml.safe_load(f)
+                    install_from_yaml(conda, env_dict, output_dir)
+                except Exception as e:
+                    print(f"Failed to install environment from file {file}: {e}")
+                    failures += 1
+    
+    if failures > 0:
+        print(f"\n {failures} environment(s) failed to install.")
+        sys.exit(1)
 
+    print("\nAll environments installed successfully.")
 
 if __name__ == "__main__":
     main()

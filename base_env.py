@@ -1,6 +1,7 @@
 import argparse
 from utils import base_helper
 import os
+import sys
 
 parser = argparse.ArgumentParser(
     prog="Project env installer",
@@ -25,7 +26,10 @@ def main():
         mode = "update" if os.path.isdir(env_path) else "create"
         base_helper.installCondaEnv(conda, f"{env_path}.yml", mode, output_dir)
     except Exception as e:
-        raise ValueError(f"Failed to install project env: {e}") from e
+        print(f"Failed to install base environment: {e}")
+        sys.exit(1)
+        
+    print("Base environment installed successfully.")
 
 if __name__ == "__main__":
     main()

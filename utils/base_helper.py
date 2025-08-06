@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 import subprocess
 
-
 def getEnvList(directory: str) -> list[Path]:
     """
     Returns a list of files in the given directory.
@@ -79,12 +78,10 @@ def installCondaEnv(conda: str, env_file_path: str, action: str, output_path: Pa
         if output_path:
             cmd_arr.extend(["-p", str(output_path)])
 
-        # Run the command and capture output for better error reporting
         completed = subprocess.run(cmd_arr, check=True, capture_output=True, text=True)
         print(completed.stdout)
 
     except subprocess.CalledProcessError as e:
-        # stderr can be None, fallback to e.output or str(e)
         error_msg = e.stderr or e.output or str(e)
         print(f"An error occurred while updating the Conda environment:\n{error_msg}")
         raise

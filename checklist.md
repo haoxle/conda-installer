@@ -23,7 +23,7 @@
 - [x] Use `subprocess.run(..., check=True)` wrapped in `try/except`  
 - [x] Catch and display meaningful errors (file not found, bad YAML, conda errors)  
 - [x] Inform user which environment is being processed and success/failure  
-- [ ] Exit process with a non-zero code if any environment creation/update fails  
+- [x] Exit process with a non-zero code if any environment creation/update fails  
 
 ## 🧼 6. User Experience Improvements  
 - [ ] Show progress output for each environment creation/update (e.g. spinner, progress bar)  
