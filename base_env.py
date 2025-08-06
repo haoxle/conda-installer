@@ -26,10 +26,10 @@ def main():
         mode = "update" if os.path.isdir(env_path) else "create"
         base_helper.installCondaEnv(conda, f"{env_path}.yml", mode, output_dir)
     except Exception as e:
-        print(f"Failed to install base environment: {e}")
+        print(f"\nFailed to install base environment: {e}")
         sys.exit(1)
         
-    print("Base environment installed successfully.")
+    print("\nBase environment installed successfully.")
 
 if __name__ == "__main__":
     main()
