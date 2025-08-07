@@ -26,9 +26,8 @@
 - [x] Exit process with a non-zero code if any environment creation/update fails  
 
 ## 🧼 6. User Experience Improvements  
-- [ ] Show progress output for each environment creation/update (e.g. spinner, progress bar)  
-- [ ] Clean, consistent CLI messages and logging  
-- [ ] Add verbose/debug mode for detailed output  
+- [x] Show progress output for each environment creation/update (e.g. spinner, progress bar)  
+- [x] Clean, consistent CLI messages and logging  
 
 ## 🧩 7. Enhancements to Polish  
 - [ ] Support `.env` file or environment variable for setting `MINICONDA_EXE` path automatically  
