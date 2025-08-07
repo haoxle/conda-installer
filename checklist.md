@@ -29,7 +29,8 @@
 - [x] Show progress output for each environment creation/update (e.g. spinner, progress bar)  
 - [x] Clean, consistent CLI messages and logging  
 
-## 🧩 7. Enhancements to Polish  
+## 🧩 7. Enhancements to Polish 
+- [ ] --verbose 
 - [ ] Support `.env` file or environment variable for setting `MINICONDA_EXE` path automatically  
 - [ ] Add terminal colors and formatting using libraries like `rich` or `colorama`  
 - [ ] Support uninstall/removal of environments  
